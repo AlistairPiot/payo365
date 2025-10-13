@@ -10,9 +10,11 @@ export default function Home() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center space-x-3">
-                            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg">
-                                Payo365
-                            </div>
+                            <Link href="/" className="inline-block">
+                                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                                    Payo365
+                                </div>
+                            </Link>
                         </div>
                         <AuthButton />
                     </div>

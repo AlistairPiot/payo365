@@ -68,7 +68,7 @@ export async function GET(
       { align: 'right' }
     )
 
-    // Émetteur (Payo365)
+    // Émetteur
     doc.setFontSize(12)
     doc.setFont('helvetica', 'bold')
     doc.text('Émis par:', 20, 80)
@@ -76,15 +76,15 @@ export async function GET(
     doc.setFont('helvetica', 'normal')
     doc.text('Payo365', 20, 87)
     doc.text('Plateforme de paiement', 20, 93)
+    doc.text('Poitiers, France', 20, 99)
 
-    // Client
+    // Client (acheteur)
     doc.setFontSize(12)
     doc.setFont('helvetica', 'bold')
-    doc.text('Client:', 20, 115)
+    doc.text('Client:', 20, 121)
     doc.setFontSize(10)
     doc.setFont('helvetica', 'normal')
-    doc.text(paymentLink.user.name || paymentLink.user.email, 20, 122)
-    doc.text(paymentLink.user.email, 20, 128)
+    doc.text(paymentLink.customerEmail || 'Non renseigné', 20, 128)
 
     // Détails du paiement
     doc.setFontSize(12)
