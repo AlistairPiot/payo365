@@ -44,7 +44,7 @@ export default function ConfidentialitePage() {
                 Le responsable du traitement des données est Payo365.
               </p>
               <p className="text-gray-700 mb-4">
-                Contact : support@payo365.com
+                Contact : alistair.piot@gmail.com
               </p>
             </section>
 
@@ -155,7 +155,7 @@ export default function ConfidentialitePage() {
                 <li><strong>Droit de retrait du consentement :</strong> À tout moment</li>
               </ul>
               <p className="text-gray-700 mb-4">
-                Pour exercer ces droits, contactez-nous à : support@payo365.com
+                Pour exercer ces droits, contactez-nous à : alistair.piot@gmail.com
               </p>
               <p className="text-gray-700 mb-4">
                 Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (Commission
@@ -207,7 +207,7 @@ export default function ConfidentialitePage() {
                 Pour toute question sur la protection de vos données ou pour exercer vos droits :
               </p>
               <p className="text-gray-700 mb-4">
-                Email : support@payo365.com
+                Email : alistair.piot@gmail.com
               </p>
             </section>
           </div>

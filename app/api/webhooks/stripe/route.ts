@@ -44,13 +44,14 @@ export async function POST(request: NextRequest) {
           break
         }
 
-        // Mettre à jour le lien de paiement
+        // Mettre à jour le lien de paiement avec les informations nécessaires pour la facture
         await prisma.paymentLink.update({
           where: { id: paymentLinkId },
           data: {
             paid: true,
             paidAt: new Date(),
             customerEmail: session.customer_email || session.customer_details?.email,
+            stripePaymentIntentId: session.payment_intent as string,
           },
         })
 

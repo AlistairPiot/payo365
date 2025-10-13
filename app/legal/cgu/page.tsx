@@ -185,7 +185,7 @@ export default function CGUPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">12. Contact</h2>
               <p className="text-gray-700 mb-4">
-                Pour toute question concernant ces CGU, contactez-nous à : support@payo365.com
+                Pour toute question concernant ces CGU, contactez-nous à : alistair.piot@gmail.com
               </p>
             </section>
           </div>

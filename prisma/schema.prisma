@@ -82,6 +82,8 @@ model PaymentLink {
   paid              Boolean       @default(false)
   paidAt            DateTime?
   customerEmail     String?
+  stripePaymentIntentId String?   // Pour récupérer les détails du paiement
+  stripeChargeId    String?       // Pour récupérer les frais Stripe
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
 

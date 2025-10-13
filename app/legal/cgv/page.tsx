@@ -159,7 +159,7 @@ export default function CGVPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">11. Contact</h2>
               <p className="text-gray-700 mb-4">
-                Pour toute question concernant ces CGV, vous pouvez nous contacter à : support@payo365.com
+                Pour toute question concernant ces CGV, vous pouvez nous contacter à : alistair.piot@gmail.com
               </p>
             </section>
           </div>
