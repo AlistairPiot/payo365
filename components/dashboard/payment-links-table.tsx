@@ -54,6 +54,7 @@ export function PaymentLinksTable({ paymentLinks }: PaymentLinksTableProps) {
     if (!deletingLinkId) return
 
     setLoading(true)
+
     try {
       const response = await fetch(`/api/payment-links/${deletingLinkId}`, {
         method: 'DELETE',

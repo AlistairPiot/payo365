@@ -37,14 +37,16 @@ export function CreatePaymentLink() {
         setFormData({ title: '', description: '', amount: '' })
         setShowForm(false)
         setToast({ message: 'Lien de paiement créé avec succès !', type: 'success' })
+        // Refresh immédiatement sans attendre
         router.refresh()
+        setLoading(false)
       } else {
         setToast({ message: data.error || 'Une erreur est survenue', type: 'error' })
+        setLoading(false)
       }
     } catch (error) {
       console.error('Error creating payment link:', error)
       setToast({ message: 'Une erreur est survenue. Veuillez réessayer.', type: 'error' })
-    } finally {
       setLoading(false)
     }
   }

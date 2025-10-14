@@ -1,9 +1,43 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
 interface DashboardStatsProps {
   stats: {
     totalLinks: number
     paidLinks: number
     totalRevenue: number
   }
+}
+
+function CountUp({ end, duration = 1000, decimals = 0, suffix = '' }: { end: number; duration?: number; decimals?: number; suffix?: string }) {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    let startTime: number
+    let animationFrame: number
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp
+      const progress = timestamp - startTime
+      const percentage = Math.min(progress / duration, 1)
+
+      // Easing function (easeOutQuart)
+      const easeOut = 1 - Math.pow(1 - percentage, 4)
+
+      setCount(end * easeOut)
+
+      if (percentage < 1) {
+        animationFrame = requestAnimationFrame(animate)
+      }
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+
+    return () => cancelAnimationFrame(animationFrame)
+  }, [end, duration])
+
+  return <>{count.toFixed(decimals)}{suffix}</>
 }
 
 export function DashboardStats({ stats }: DashboardStatsProps) {
@@ -28,7 +62,9 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
             />
           </svg>
         </div>
-        <p className="text-3xl font-bold text-gray-900">{stats.totalLinks}</p>
+        <p className="text-3xl font-bold text-gray-900">
+          <CountUp end={stats.totalLinks} duration={1200} />
+        </p>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -48,7 +84,9 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
             />
           </svg>
         </div>
-        <p className="text-3xl font-bold text-gray-900">{stats.paidLinks}</p>
+        <p className="text-3xl font-bold text-gray-900">
+          <CountUp end={stats.paidLinks} duration={1200} />
+        </p>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
@@ -69,7 +107,7 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
           </svg>
         </div>
         <p className="text-3xl font-bold text-gray-900">
-          {(stats.totalRevenue / 100).toFixed(2)}€
+          <CountUp end={stats.totalRevenue / 100} duration={1200} decimals={2} suffix="€" />
         </p>
       </div>
 
@@ -90,7 +128,9 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
             />
           </svg>
         </div>
-        <p className="text-3xl font-bold">{(platformFee / 100).toFixed(2)}€</p>
+        <p className="text-3xl font-bold">
+          <CountUp end={platformFee / 100} duration={1200} decimals={2} suffix="€" />
+        </p>
       </div>
     </div>
   )

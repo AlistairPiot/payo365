@@ -67,43 +67,17 @@ body {
   }
 }
 
-@keyframes fadeOutRow {
+@keyframes fadeOut {
   0% {
     opacity: 1;
-    transform: translateX(0);
-  }
-  25% {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  99.9% {
-    opacity: 0;
-    transform: translateX(20px);
-    height: 0;
-    line-height: 0;
+    transform: translateY(0);
   }
   100% {
     opacity: 0;
-    transform: translateX(20px);
+    transform: translateY(10px);
+    visibility: hidden;
     height: 0;
-    line-height: 0;
-    display: none;
-  }
-}
-
-@keyframes fadeOutCell {
-  0% {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  25% {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  100% {
-    padding-top: 0;
-    padding-bottom: 0;
-    border: none;
+    overflow: hidden;
   }
 }
 
@@ -125,18 +99,26 @@ body {
 }
 
 .animate-fadeOut {
-  animation: fadeOutRow 0.6s ease-in-out forwards;
-  overflow: hidden;
+  animation: fadeOut 0.3s ease-out forwards;
 }
 
 .animate-fadeOut td {
-  animation: fadeOutCell 0.6s ease-in-out forwards;
-  overflow: hidden;
-  box-sizing: border-box;
+  padding: 0 !important;
+  height: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  animation: collapseCell 0.3s ease-out forwards;
 }
 
-.animate-fadeOut td > * {
-  transition: all 0.2s ease-out;
-  opacity: 0;
-  transform: translateX(20px);
+@keyframes collapseCell {
+  0% {
+    max-height: 100px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  100% {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
