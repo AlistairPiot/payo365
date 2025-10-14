@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Toast } from '@/components/ui/toast'
+import { Loader } from '@/components/ui/loader'
 
 export function CreatePaymentLink() {
   const router = useRouter()
@@ -141,9 +142,16 @@ export function CreatePaymentLink() {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+            className="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
           >
-            {loading ? 'Création...' : 'Créer le lien'}
+            {loading ? (
+              <>
+                <Loader size="sm" className="mr-2" />
+                Création...
+              </>
+            ) : (
+              'Créer le lien'
+            )}
           </button>
           <button
             type="button"

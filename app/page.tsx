@@ -1,5 +1,6 @@
 import { AuthButton } from "@/components/auth-button";
 import { Footer } from "@/components/footer";
+import { CTAButton } from "@/components/cta-button";
 import Link from "next/link";
 
 export default function Home() {
@@ -35,12 +36,9 @@ export default function Home() {
                         Générez un lien, partagez-le et recevez vos paiements
                         instantanément.
                     </p>
-                    <Link
-                        href="/api/auth/signin?callbackUrl=/dashboard"
-                        className="inline-block px-8 py-4 bg-indigo-600 text-white text-lg font-semibold rounded-lg hover:bg-indigo-700 transition shadow-lg hover:shadow-xl cursor-pointer"
-                    >
+                    <CTAButton href="/api/auth/signin?callbackUrl=/dashboard">
                         Commencer maintenant
-                    </Link>
+                    </CTAButton>
                 </div>
 
                 {/* Features */}
@@ -205,12 +203,9 @@ export default function Home() {
                         Démarrez en quelques clics et recevez vos paiements
                         immédiatement.
                     </p>
-                    <Link
-                        href="/api/auth/signin?callbackUrl=/dashboard"
-                        className="inline-block px-8 py-4 bg-white text-indigo-600 text-lg font-semibold rounded-lg hover:bg-gray-50 transition shadow-lg cursor-pointer"
-                    >
+                    <CTAButton href="/api/auth/signin?callbackUrl=/dashboard" variant="secondary">
                         Créer mon compte
-                    </Link>
+                    </CTAButton>
                 </div>
             </main>
 

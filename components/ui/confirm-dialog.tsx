@@ -1,11 +1,14 @@
 'use client'
 
+import { Loader } from './loader'
+
 interface ConfirmDialogProps {
   title: string
   message: string
   confirmText?: string
   cancelText?: string
   type?: 'danger' | 'warning' | 'info'
+  loading?: boolean
   onConfirm: () => void
   onCancel: () => void
 }
@@ -16,6 +19,7 @@ export function ConfirmDialog({
   confirmText = 'Confirmer',
   cancelText = 'Annuler',
   type = 'danger',
+  loading = false,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) {
@@ -40,8 +44,8 @@ export function ConfirmDialog({
   const colorScheme = colors[type]
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 animate-fade-in">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 animate-scale-in">
+    <div className="fixed inset-0 backdrop-blur-md bg-white/30 flex items-center justify-center p-4 z-50 animate-fade-in">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl max-w-md w-full p-6 animate-scale-in border border-white/20">
         <div className="flex items-start gap-4">
           <div className={`flex-shrink-0 ${colorScheme.bg} rounded-full p-3`}>
             {type === 'danger' && (
@@ -100,15 +104,24 @@ export function ConfirmDialog({
         <div className="flex gap-3 mt-6">
           <button
             onClick={onCancel}
-            className="flex-1 px-4 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition cursor-pointer"
+            disabled={loading}
+            className="flex-1 px-4 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {cancelText}
           </button>
           <button
             onClick={onConfirm}
-            className={`flex-1 px-4 py-2.5 ${colorScheme.button} text-white font-medium rounded-lg transition shadow-sm hover:shadow cursor-pointer`}
+            disabled={loading}
+            className={`flex-1 px-4 py-2.5 ${colorScheme.button} text-white font-medium rounded-lg transition shadow-sm hover:shadow cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center`}
           >
-            {confirmText}
+            {loading ? (
+              <>
+                <Loader size="sm" className="mr-2" />
+                {confirmText}...
+              </>
+            ) : (
+              confirmText
+            )}
           </button>
         </div>
       </div>

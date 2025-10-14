@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Toast } from '@/components/ui/toast'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
+import { Loader } from '@/components/ui/loader'
 
 interface PaymentLinksTableProps {
   paymentLinks: PaymentLink[]
@@ -162,8 +163,14 @@ export function PaymentLinksTable({ paymentLinks }: PaymentLinksTableProps) {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {paymentLinks.map((link) => (
-              <tr key={link.id} className="hover:bg-gray-50">
+            {paymentLinks.map((link, index) => (
+              <tr
+                key={link.id}
+                className="hover:bg-gray-50 animate-fadeIn"
+                style={{
+                  animationDelay: `${index * 50}ms`,
+                }}
+              >
                 <td className="px-6 py-4">
                   <div className="text-sm font-medium text-gray-900">
                     {link.title}
@@ -282,8 +289,8 @@ export function PaymentLinksTable({ paymentLinks }: PaymentLinksTableProps) {
 
       {/* Modal de modification */}
       {editingLink && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+        <div className="fixed inset-0 backdrop-blur-md bg-white/30 flex items-center justify-center p-4 z-50 animate-fade-in">
+          <div className="bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl max-w-md w-full p-6 border border-white/20 animate-scale-in">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold text-gray-900">
                 Modifier le lien de paiement
@@ -346,14 +353,22 @@ export function PaymentLinksTable({ paymentLinks }: PaymentLinksTableProps) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="flex-1 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center"
                 >
-                  {loading ? 'Modification...' : 'Modifier'}
+                  {loading ? (
+                    <>
+                      <Loader size="sm" className="mr-2" />
+                      Modification...
+                    </>
+                  ) : (
+                    'Modifier'
+                  )}
                 </button>
                 <button
                   type="button"
                   onClick={() => setEditingLink(null)}
-                  className="px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition cursor-pointer"
+                  disabled={loading}
+                  className="px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition cursor-pointer disabled:opacity-50"
                 >
                   Annuler
                 </button>
@@ -370,6 +385,7 @@ export function PaymentLinksTable({ paymentLinks }: PaymentLinksTableProps) {
           confirmText="Supprimer"
           cancelText="Annuler"
           type="danger"
+          loading={loading}
           onConfirm={handleDeleteConfirm}
           onCancel={() => setDeletingLinkId(null)}
         />
