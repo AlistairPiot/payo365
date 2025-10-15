@@ -13,9 +13,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Payo365",
+    title: "Payo365 - Liens de paiement en ligne pour freelances et créateurs",
     description:
-        "La solution ultra simple pour freelances et créateurs. Générez un lien, partagez-le et recevez vos paiements instantanément. Seulement 3% de commission.",
+        "Créez des liens de paiement en 30 secondes. Solution simple et sécurisée pour freelances et créateurs. Commission de 3% seulement, sans abonnement. Paiements via Stripe.",
+    keywords: "lien de paiement, paiement en ligne, freelance, stripe, commission 3%, facturation",
+    icons: {
+        icon: [
+            { url: '/favicon.svg', type: 'image/svg+xml' },
+            { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+        ],
+        apple: { url: '/apple-icon.png', type: 'image/png', sizes: '180x180' },
+    },
+    openGraph: {
+        title: "Payo365 - Liens de paiement instantanés",
+        description: "Créez des liens de paiement en 30 secondes. Seulement 3% de commission.",
+        type: "website",
+    },
 };
 
 export default function RootLayout({
@@ -24,7 +37,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="fr">
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >

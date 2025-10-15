@@ -147,7 +147,7 @@ export default async function PaymentPage({ params, searchParams }: PaymentPageP
 
           <a
             href={paymentLink.stripeSessionUrl}
-            className="block w-full bg-indigo-600 text-white text-center px-6 py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer"
+            className="block w-full bg-indigo-600 text-white text-center px-6 py-4 rounded-lg font-semibold hover:bg-indigo-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer"
           >
             Payer maintenant
           </a>

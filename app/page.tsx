@@ -42,8 +42,8 @@ export default function Home() {
                 </div>
 
                 {/* Features */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
-                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                <div id="features" className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
+                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300">
                         <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                             <svg
                                 className="w-6 h-6 text-indigo-600"
@@ -68,7 +68,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300">
                         <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                             <svg
                                 className="w-6 h-6 text-purple-600"
@@ -93,7 +93,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300">
                         <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                             <svg
                                 className="w-6 h-6 text-green-600"
@@ -118,7 +118,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300">
                         <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
                             <svg
                                 className="w-6 h-6 text-amber-600"
@@ -143,7 +143,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300">
                         <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                             <svg
                                 className="w-6 h-6 text-blue-600"
@@ -168,7 +168,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+                    <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-300">
                         <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
                             <svg
                                 className="w-6 h-6 text-pink-600"
@@ -195,7 +195,7 @@ export default function Home() {
                 </div>
 
                 {/* CTA Section */}
-                <div className="mt-20 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 text-center text-white">
+                <div className="mt-20 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-12 text-center text-white hover:shadow-2xl transition-all duration-300">
                     <h2 className="text-3xl font-bold mb-4">
                         Prêt à recevoir vos premiers paiements ?
                     </h2>

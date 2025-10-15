@@ -6,7 +6,6 @@ import { Loader } from '@/components/ui/loader'
 
 export function AuthButton() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [loading, setLoading] = useState(true)
   const [isNavigating, setIsNavigating] = useState(false)
 
   useEffect(() => {
@@ -15,26 +14,17 @@ export function AuthButton() {
       .then((res) => res.json())
       .then((session) => {
         setIsAuthenticated(!!session?.user)
-        setLoading(false)
       })
       .catch(() => {
-        setLoading(false)
+        // Ignorer les erreurs
       })
   }, [])
-
-  if (loading) {
-    return (
-      <div className="px-6 py-2 bg-gray-200 text-gray-400 font-semibold rounded-lg flex items-center justify-center">
-        <Loader size="sm" />
-      </div>
-    )
-  }
 
   if (isAuthenticated) {
     return (
       <Link
         href="/dashboard"
-        className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition cursor-pointer"
+        className="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 hover:shadow-lg transition-all duration-200 cursor-pointer"
       >
         Dashboard
       </Link>

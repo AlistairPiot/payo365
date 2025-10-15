@@ -142,7 +142,8 @@ export function PaymentLinksTable({ paymentLinks }: PaymentLinksTableProps) {
         </h2>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* Version Desktop - Tableau */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
@@ -286,6 +287,138 @@ export function PaymentLinksTable({ paymentLinks }: PaymentLinksTableProps) {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Version Mobile - Cards */}
+      <div className="md:hidden divide-y divide-gray-200">
+        {paymentLinks.map((link, index) => (
+          <div
+            key={link.id}
+            className="p-4 hover:bg-gray-50 transition animate-fadeIn"
+            style={{
+              animationDelay: `${index * 50}ms`,
+            }}
+          >
+            {/* Header de la card avec titre et statut */}
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-medium text-gray-900 truncate">
+                  {link.title}
+                </h3>
+                {link.description && (
+                  <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                    {link.description}
+                  </p>
+                )}
+              </div>
+              <div className="ml-3 flex-shrink-0">
+                {link.paid ? (
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    <svg
+                      className="w-3 h-3 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Payé
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                    <svg
+                      className="w-3 h-3 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    En attente
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Montant et date */}
+            <div className="flex items-center justify-between mb-3 text-sm">
+              <div>
+                <span className="text-gray-500">Montant: </span>
+                <span className="font-semibold text-gray-900">
+                  {(link.amount / 100).toFixed(2)} {link.currency.toUpperCase()}
+                </span>
+              </div>
+              <div className="text-xs text-gray-500">
+                {formatDate(link.createdAt)}
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => copyToClipboard(link.id)}
+                className="flex-1 min-w-[45%] inline-flex items-center justify-center px-3 py-2 bg-indigo-50 text-indigo-700 rounded-md hover:bg-indigo-100 transition cursor-pointer text-sm"
+              >
+                {copiedId === link.id ? (
+                  <>
+                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Copié !
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Copier
+                  </>
+                )}
+              </button>
+
+              {link.paid ? (
+                <a
+                  href={`/api/payment-links/${link.id}/invoice`}
+                  download
+                  className="flex-1 min-w-[45%] inline-flex items-center justify-center px-3 py-2 bg-green-50 text-green-700 rounded-md hover:bg-green-100 transition cursor-pointer text-sm"
+                >
+                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Facture
+                </a>
+              ) : (
+                <>
+                  <button
+                    onClick={() => handleEdit(link)}
+                    className="flex-1 min-w-[45%] inline-flex items-center justify-center px-3 py-2 bg-gray-50 text-gray-700 rounded-md hover:bg-gray-100 transition cursor-pointer text-sm"
+                  >
+                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    Modifier
+                  </button>
+                  <button
+                    onClick={() => handleDeleteClick(link.id)}
+                    disabled={loading}
+                    className="flex-1 min-w-[45%] inline-flex items-center justify-center px-3 py-2 bg-red-50 text-red-700 rounded-md hover:bg-red-100 transition disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed text-sm"
+                  >
+                    <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Supprimer
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Modal de modification */}

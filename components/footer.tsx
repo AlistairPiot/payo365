@@ -1,13 +1,20 @@
+"use client";
+
 import Link from "next/link";
 
 export function Footer() {
+    const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     return (
         <footer className="border-t border-gray-200 bg-white mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                     {/* Logo et description */}
                     <div className="col-span-1 md:col-span-2">
-                        <Link href="/" className="inline-block">
+                        <Link href="/" className="inline-block" onClick={scrollToTop}>
                             <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg hover:shadow-lg transition-shadow cursor-pointer mb-4">
                                 Payo365
                             </div>

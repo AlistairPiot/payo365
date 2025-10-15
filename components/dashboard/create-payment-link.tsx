@@ -55,8 +55,8 @@ export function CreatePaymentLink() {
     <>
       {!showForm ? (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex-1">
               <h2 className="text-lg font-semibold text-gray-900 mb-1">
                 Créer un nouveau lien de paiement
               </h2>
@@ -66,7 +66,7 @@ export function CreatePaymentLink() {
             </div>
             <button
               onClick={() => setShowForm(true)}
-              className="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition cursor-pointer"
+              className="px-4 sm:px-6 py-2 sm:py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition cursor-pointer whitespace-nowrap self-start sm:self-auto"
             >
               + Nouveau lien
             </button>
