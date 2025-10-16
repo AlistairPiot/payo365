@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { PLATFORM_FEE_PERCENT, calculatePlatformFee } from '@/lib/stripe'
+import { stripe, PLATFORM_FEE_PERCENT, calculatePlatformFee } from '@/lib/stripe'
 import { jsPDF } from 'jspdf'
 
 export const runtime = 'nodejs'
@@ -44,11 +44,29 @@ export async function GET(
       )
     }
 
+    // Récupérer les informations du paiement depuis Stripe
+    const paymentIntent = await stripe.paymentIntents.retrieve(
+      paymentLink.stripePaymentIntentId
+    )
+
+    // Récupérer les frais Stripe depuis le charge
+    let stripeFee = 0
+    if (paymentIntent.latest_charge) {
+      const charge = await stripe.charges.retrieve(
+        paymentIntent.latest_charge as string,
+        { expand: ['balance_transaction'] }
+      )
+
+      if (charge.balance_transaction && typeof charge.balance_transaction !== 'string') {
+        stripeFee = charge.balance_transaction.fee / 100 // Convertir en euros
+      }
+    }
+
     // Calculer les montants
     const totalAmount = paymentLink.amount / 100 // Montant total en euros
     const platformFeeInCents = calculatePlatformFee(paymentLink.amount) // Commission en centimes
     const platformFee = platformFeeInCents / 100 // Commission en euros
-    const netAmount = totalAmount - platformFee // Montant net reçu
+    const netAmount = totalAmount - stripeFee - platformFee // Montant net reçu après tous les frais
 
     // Créer le PDF avec jsPDF
     const doc = new jsPDF()
@@ -126,6 +144,12 @@ export async function GET(
     doc.setFontSize(10)
     doc.text('Sous-total:', 110, yPos)
     doc.text(`${totalAmount.toFixed(2)} €`, 190, yPos, { align: 'right' })
+
+    yPos += 7
+
+    // Frais Stripe
+    doc.text('Frais de traitement Stripe:', 110, yPos)
+    doc.text(`-${stripeFee.toFixed(2)} €`, 190, yPos, { align: 'right' })
 
     yPos += 7
 
