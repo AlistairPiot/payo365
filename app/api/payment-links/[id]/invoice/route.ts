@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { PLATFORM_FEE_PERCENT } from '@/lib/stripe'
+import { PLATFORM_FEE_PERCENT, calculatePlatformFee } from '@/lib/stripe'
 import { jsPDF } from 'jspdf'
 
 export const runtime = 'nodejs'
@@ -46,7 +46,8 @@ export async function GET(
 
     // Calculer les montants
     const totalAmount = paymentLink.amount / 100 // Montant total en euros
-    const platformFee = (totalAmount * PLATFORM_FEE_PERCENT) / 100 // Commission Payo365
+    const platformFeeInCents = calculatePlatformFee(paymentLink.amount) // Commission en centimes
+    const platformFee = platformFeeInCents / 100 // Commission en euros
     const netAmount = totalAmount - platformFee // Montant net reçu
 
     // Créer le PDF avec jsPDF
