@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { headers } from 'next/headers'
 import { stripe } from '@/lib/stripe'
 import { prisma } from '@/lib/prisma'
+import { sendPaymentNotification } from '@/lib/resend'
 import Stripe from 'stripe'
 
 export async function POST(request: NextRequest) {
@@ -45,7 +46,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Mettre à jour le lien de paiement avec les informations nécessaires pour la facture
-        await prisma.paymentLink.update({
+        const updatedPaymentLink = await prisma.paymentLink.update({
           where: { id: paymentLinkId },
           data: {
             paid: true,
@@ -53,9 +54,24 @@ export async function POST(request: NextRequest) {
             customerEmail: session.customer_email || session.customer_details?.email,
             stripePaymentIntentId: session.payment_intent as string,
           },
+          include: {
+            user: true, // Inclure l'utilisateur pour récupérer son email
+          },
         })
 
         console.log(`Payment link ${paymentLinkId} marked as paid`)
+
+        // Envoyer une notification email au marchand
+        if (updatedPaymentLink.user.email) {
+          await sendPaymentNotification(updatedPaymentLink.user.email, {
+            amount: updatedPaymentLink.amount,
+            currency: updatedPaymentLink.currency,
+            title: updatedPaymentLink.title,
+            customerEmail: updatedPaymentLink.customerEmail || 'Non renseigné',
+            paymentLinkId: updatedPaymentLink.id,
+          })
+        }
+
         break
       }
 
