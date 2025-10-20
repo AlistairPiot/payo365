@@ -25,13 +25,13 @@
 2. Il remplit le formulaire (titre, description, montant)
 3. Frontend appelle `POST /api/checkout` avec les données
 4. Backend:
-   - Vérifie que l'utilisateur a un compte Stripe Connect onboardé
-   - Crée un enregistrement PaymentLink dans la DB
-   - Calcule la commission (3%)
-   - Crée une Stripe Checkout Session avec:
-     - `payment_intent_data.application_fee_amount` = 3% du montant
-     - `payment_intent_data.transfer_data.destination` = stripeAccountId de l'utilisateur
-   - Met à jour le PaymentLink avec l'URL de la session Stripe
+    - Vérifie que l'utilisateur a un compte Stripe Connect onboardé
+    - Crée un enregistrement PaymentLink dans la DB
+    - Calcule la commission (3%)
+    - Crée une Stripe Checkout Session avec:
+        - `payment_intent_data.application_fee_amount` = 3% du montant
+        - `payment_intent_data.transfer_data.destination` = stripeAccountId de l'utilisateur
+    - Met à jour le PaymentLink avec l'URL de la session Stripe
 5. Le lien est affiché dans le tableau du dashboard
 
 ### 4. Partage du lien
@@ -43,26 +43,26 @@
 
 1. Le client clique sur le lien et arrive sur `/pay/{id}`
 2. La page affiche:
-   - Le titre et la description
-   - Le montant à payer
-   - Le nom du bénéficiaire
-   - Un bouton "Payer maintenant"
+    - Le titre et la description
+    - Le montant à payer
+    - Le nom du bénéficiaire
+    - Un bouton "Payer maintenant"
 3. Le client clique sur "Payer maintenant"
 4. Il est redirigé vers Stripe Checkout
 5. Il entre ses informations de carte bancaire
 6. Stripe traite le paiement:
-   - Débite le client
-   - Prélève 3% de commission pour la plateforme
-   - Transfère le reste (97%) au compte Stripe Connect de l'utilisateur
+    - Débite le client
+    - Prélève 8% de commission pour la plateforme
+    - Transfère le reste (97%) au compte Stripe Connect de l'utilisateur
 
 ### 6. Confirmation du paiement
 
 1. Stripe envoie un webhook `checkout.session.completed` à `/api/webhooks/stripe`
 2. Le webhook:
-   - Vérifie la signature du webhook
-   - Récupère le `paymentLinkId` depuis les metadata
-   - Met à jour le PaymentLink: `paid = true`, `paidAt = now()`
-   - Sauvegarde l'email du client
+    - Vérifie la signature du webhook
+    - Récupère le `paymentLinkId` depuis les metadata
+    - Met à jour le PaymentLink: `paid = true`, `paidAt = now()`
+    - Sauvegarde l'email du client
 3. Le client est redirigé vers `/pay/{id}?success=true`
 4. La page affiche "Paiement en cours de confirmation..."
 5. Une fois la DB mise à jour, la page affiche "Paiement réussi !"
@@ -71,10 +71,10 @@
 
 1. L'utilisateur voit son lien passer de "En attente" à "Payé"
 2. Les statistiques sont mises à jour:
-   - Nombre de liens créés
-   - Nombre de paiements reçus
-   - Revenu total
-   - Commission plateforme (3%)
+    - Nombre de liens créés
+    - Nombre de paiements reçus
+    - Revenu total
+    - Commission plateforme (3%)
 
 ## Architecture technique
 
@@ -98,16 +98,18 @@
 ### Base de données (Prisma)
 
 **User**
-- id, email, name, image
-- stripeAccountId (compte Stripe Connect)
-- stripeOnboarded (boolean)
-- paymentLinks (relation)
+
+-   id, email, name, image
+-   stripeAccountId (compte Stripe Connect)
+-   stripeOnboarded (boolean)
+-   paymentLinks (relation)
 
 **PaymentLink**
-- id, userId, title, description
-- amount (en centimes), currency
-- stripeCheckoutId, stripeSessionUrl
-- paid (boolean), paidAt, customerEmail
+
+-   id, userId, title, description
+-   amount (en centimes), currency
+-   stripeCheckoutId, stripeSessionUrl
+-   paid (boolean), paidAt, customerEmail
 
 **Account, Session, VerificationToken** (NextAuth)
 
@@ -139,23 +141,24 @@ Client → Stripe Checkout
 ### Webhook Stripe
 
 Événements écoutés:
-- `checkout.session.completed` → Marque le paiement comme payé
-- `account.updated` → Met à jour le statut d'onboarding
+
+-   `checkout.session.completed` → Marque le paiement comme payé
+-   `account.updated` → Met à jour le statut d'onboarding
 
 ## Sécurité
 
-- Authentification obligatoire pour créer des liens
-- Vérification de la signature des webhooks Stripe
-- Validation des montants côté serveur
-- Utilisation de Stripe Connect pour sécuriser les transferts
-- HTTPS obligatoire en production
+-   Authentification obligatoire pour créer des liens
+-   Vérification de la signature des webhooks Stripe
+-   Validation des montants côté serveur
+-   Utilisation de Stripe Connect pour sécuriser les transferts
+-   HTTPS obligatoire en production
 
 ## Variables d'environnement critiques
 
-- `STRIPE_SECRET_KEY` → Ne JAMAIS exposer côté client
-- `STRIPE_WEBHOOK_SECRET` → Pour valider les webhooks
-- `NEXTAUTH_SECRET` → Pour signer les sessions
-- `DATABASE_URL` → Connexion à la base de données
+-   `STRIPE_SECRET_KEY` → Ne JAMAIS exposer côté client
+-   `STRIPE_WEBHOOK_SECRET` → Pour valider les webhooks
+-   `NEXTAUTH_SECRET` → Pour signer les sessions
+-   `DATABASE_URL` → Connexion à la base de données
 
 ## Prochaines étapes
 

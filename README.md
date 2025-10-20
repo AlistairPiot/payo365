@@ -7,7 +7,7 @@ Un SaaS ultra simple qui permet aux freelances et créateurs de générer instan
 -   Authentification via Google avec NextAuth.js
 -   Connexion Stripe Connect pour recevoir les paiements
 -   Création de liens de paiement en quelques clics
--   Commission automatique de 3% sur chaque paiement
+-   Commission automatique de 8% sur chaque paiement
 -   Dashboard avec statistiques et gestion des liens
 -   Page publique de paiement sécurisée
 -   Webhooks Stripe pour la confirmation des paiements
