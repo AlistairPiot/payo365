@@ -1,12 +1,5 @@
 import * as brevo from '@getbrevo/brevo'
 
-if (!process.env.BREVO_API_KEY) {
-  throw new Error('BREVO_API_KEY is not set')
-}
-
-const apiInstance = new brevo.TransactionalEmailsApi()
-apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY)
-
 export async function sendPaymentNotification(
   merchantEmail: string,
   paymentDetails: {
@@ -17,6 +10,16 @@ export async function sendPaymentNotification(
     paymentLinkId: string
   }
 ) {
+  // Vérifier la clé API au moment de l'envoi, pas au chargement du module
+  if (!process.env.BREVO_API_KEY) {
+    console.error('BREVO_API_KEY is not set, skipping email notification')
+    return
+  }
+
+  // Initialiser l'API Brevo
+  const apiInstance = new brevo.TransactionalEmailsApi()
+  apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY)
+
   const amountInEuros = (paymentDetails.amount / 100).toFixed(2)
 
   const sendSmtpEmail = new brevo.SendSmtpEmail()
