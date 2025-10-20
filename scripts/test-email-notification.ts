@@ -7,13 +7,13 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import { sendPaymentNotification } from '../lib/resend'
+import { sendPaymentNotification } from '../lib/brevo'
 
 async function testEmailNotification() {
   console.log('🧪 Test d\'envoi d\'email de notification...\n')
 
   try {
-    await sendPaymentNotification('fireflytoip@gmail.com', {
+    await sendPaymentNotification('alistair.piot@gmail.com', {
       amount: 500, // 5€ en centimes
       currency: 'eur',
       title: 'Test de notification email',
@@ -22,7 +22,7 @@ async function testEmailNotification() {
     })
 
     console.log('✅ Email envoyé avec succès !')
-    console.log('📧 Vérifiez la boîte mail : fireflytoip@gmail.com')
+    console.log('📧 Vérifiez la boîte mail : alistair.piot@gmail.com')
     console.log('📨 Vérifiez aussi les spams si vous ne le voyez pas')
   } catch (error) {
     console.error('❌ Erreur lors de l\'envoi :', error)

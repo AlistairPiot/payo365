@@ -20,7 +20,7 @@ export async function sendPaymentNotification(
 
   try {
     await resend.emails.send({
-      from: 'Payo365 <notifications@send.payo365.com>',
+      from: 'Payo365 <onboarding@resend.dev>',
       to: merchantEmail,
       subject: `✅ Paiement reçu de ${amountInEuros}€ - ${paymentDetails.title}`,
       html: `
