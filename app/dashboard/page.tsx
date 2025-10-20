@@ -71,39 +71,10 @@ export default async function DashboardPage() {
         _sum: { amount: true },
     });
 
-    // Calculer les frais Stripe totaux
-    let totalStripeFees = 0;
-    const paidPaymentLinks = await prisma.paymentLink.findMany({
-        where: { userId: user.id, paid: true, stripePaymentIntentId: { not: null } },
-        select: { stripePaymentIntentId: true },
-    });
-
-    for (const paymentLink of paidPaymentLinks) {
-        try {
-            const paymentIntent = await stripe.paymentIntents.retrieve(
-                paymentLink.stripePaymentIntentId!
-            );
-
-            if (paymentIntent.latest_charge) {
-                const charge = await stripe.charges.retrieve(
-                    paymentIntent.latest_charge as string,
-                    { expand: ['balance_transaction'] }
-                );
-
-                if (charge.balance_transaction && typeof charge.balance_transaction !== 'string') {
-                    totalStripeFees += charge.balance_transaction.fee;
-                }
-            }
-        } catch (error) {
-            console.error('Error fetching Stripe fees:', error);
-        }
-    }
-
     const stats = {
         totalLinks,
         paidLinks,
         totalRevenue: totalRevenue._sum.amount || 0,
-        totalStripeFees,
     };
 
     return (

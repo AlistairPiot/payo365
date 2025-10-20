@@ -263,8 +263,8 @@ export default function Home() {
                             Commissions imbattables
                         </h3>
                         <p className="text-gray-600">
-                            Seulement 3% de commission, parmi les plus basses du
-                            marché. Nos concurrents facturent jusqu'à 5-7%.
+                            Seulement 6% de commission tout inclus. Simple et
+                            transparent, sans frais cachés.
                         </p>
                     </div>
 
