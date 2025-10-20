@@ -7,6 +7,7 @@ interface DashboardStatsProps {
         totalLinks: number;
         paidLinks: number;
         totalRevenue: number;
+        totalStripeFees: number;
     };
 }
 
@@ -59,7 +60,7 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
     const platformFee = stats.totalRevenue * 0.03;
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between mb-2">
                     <p className="text-sm font-medium text-gray-600">
@@ -159,6 +160,35 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
                 <p className="text-3xl font-bold">
                     <CountUp
                         end={platformFee / 100}
+                        duration={1200}
+                        decimals={2}
+                        suffix="€"
+                    />
+                </p>
+            </div>
+
+            <div className="bg-white rounded-xl shadow-sm border border-blue-200 p-6">
+                <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm font-medium text-gray-600">
+                        Frais Stripe (1,5% + 0,25€)
+                    </p>
+                    <svg
+                        className="w-5 h-5 text-blue-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                        />
+                    </svg>
+                </div>
+                <p className="text-3xl font-bold text-gray-900">
+                    <CountUp
+                        end={stats.totalStripeFees / 100}
                         duration={1200}
                         decimals={2}
                         suffix="€"
