@@ -5,6 +5,7 @@ import { handleSignOut } from '@/app/actions/auth'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface DashboardHeaderProps {
   user: User
@@ -27,7 +28,14 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <Link href="/dashboard">
+              <Link href="/dashboard" className="flex items-center gap-2">
+                <Image
+                  src="/icon_payo365.svg"
+                  alt="Payo365 Logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10"
+                />
                 <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg cursor-pointer hover:shadow-lg transition-shadow">
                   Payo365
                 </div>
