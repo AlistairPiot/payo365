@@ -211,11 +211,25 @@ export async function GET(
     // Générer le PDF en buffer
     const pdfBuffer = Buffer.from(doc.output('arraybuffer'))
 
+    // Créer un nom de fichier professionnel et lisible
+    // Format: Facture_PAYO365_YYYYMMDD_Montant_NomClient.pdf
+    const invoiceDate = paymentLink.paidAt || new Date()
+    const formattedDate = invoiceDate.toISOString().split('T')[0].replace(/-/g, '') // YYYYMMDD
+    const formattedAmount = totalAmount.toFixed(2).replace('.', '_') // Ex: 50_00
+
+    // Extraire le nom du client depuis l'email (partie avant @) et nettoyer
+    const clientName = (paymentLink.customerEmail || 'Client')
+      .split('@')[0]
+      .replace(/[^a-zA-Z0-9]/g, '_') // Remplacer caractères spéciaux par _
+      .substring(0, 20) // Limiter à 20 caractères
+
+    const fileName = `Facture_PAYO365_${formattedDate}_${formattedAmount}EUR_${clientName}.pdf`
+
     // Retourner le PDF
     return new NextResponse(pdfBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="facture-${paymentLink.id}.pdf"`,
+        'Content-Disposition': `attachment; filename="${fileName}"`,
       },
     })
   } catch (error) {
