@@ -7,6 +7,10 @@ interface DashboardStatsProps {
         totalLinks: number;
         paidLinks: number;
         totalRevenue: number;
+        chartData: Array<{
+            date: string;
+            revenue: number;
+        }>;
     };
 }
 
