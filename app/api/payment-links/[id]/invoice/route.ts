@@ -213,7 +213,7 @@ export async function GET(
 
     // Créer un nom de fichier professionnel et lisible
     // Format: Facture_PAYO365_YYYYMMDD_Montant_NomClient.pdf
-    const invoiceDate = paymentLink.paidAt || new Date()
+    const invoiceDate = paymentLink.paidAt ? new Date(paymentLink.paidAt) : new Date()
     const formattedDate = invoiceDate.toISOString().split('T')[0].replace(/-/g, '') // YYYYMMDD
     const formattedAmount = totalAmount.toFixed(2).replace('.', '_') // Ex: 50_00
 
