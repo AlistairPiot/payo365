@@ -52,12 +52,13 @@ export async function sendPaymentNotification(
             padding: 20px;
           }
           .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #f8f9fa;
+            color: #1f2937;
             padding: 30px;
             border-radius: 10px;
             text-align: center;
             margin-bottom: 30px;
+            border: 1px solid #e5e7eb;
           }
           .content {
             background: #f9fafb;
@@ -107,7 +108,10 @@ export async function sendPaymentNotification(
       </head>
       <body>
         <div class="header">
-          <h1 style="margin: 0; font-size: 28px;">🎉 Paiement reçu !</h1>
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+            <img src="${process.env.NEXT_PUBLIC_APP_URL}/icon_payo365.svg" alt="Payo365" style="width: 48px; height: 48px;" />
+            <h1 style="margin: 0; font-size: 28px;">Paiement reçu !</h1>
+          </div>
         </div>
 
         <div class="content">
