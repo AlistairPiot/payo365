@@ -19,9 +19,9 @@ export function Footer() {
                             <Image
                                 src="/icon_payo365.svg"
                                 alt="Payo365 Logo"
-                                width={32}
-                                height={32}
-                                className="w-8 h-8"
+                                width={40}
+                                height={40}
+                                className="w-10 h-10"
                             />
                             <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
                                 Payo365
