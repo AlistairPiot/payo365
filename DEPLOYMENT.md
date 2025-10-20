@@ -99,6 +99,18 @@ NEXT_PUBLIC_APP_URL=https://payo365.com
 NEXT_PUBLIC_PLATFORM_FEE_PERCENT=3
 ```
 
+#### Brevo (Notifications Email)
+```
+BREVO_API_KEY=xkeysib_VOTRE_CLE_API_BREVO
+```
+
+**Comment obtenir la clé Brevo :**
+1. Créer un compte sur : https://app.brevo.com
+2. Aller dans **Settings** → **SMTP & API**
+3. Dans la section **API Keys** (pas SMTP Keys), créer une nouvelle clé
+4. La clé doit commencer par `xkeysib-` (et non `xsmtpsib-`)
+5. Copier la clé dans les variables d'environnement Vercel
+
 ### 3.3 Déployer
 
 1. Cliquer sur **Deploy**
@@ -201,6 +213,7 @@ Vercel exécutera automatiquement `prisma generate` via le hook `postinstall`
   - CVC : n'importe quel 3 chiffres
 - [ ] Vérifier que le webhook est reçu
 - [ ] Vérifier que le paiement est marqué comme `paid` dans la DB
+- [ ] Vérifier que l'email de notification a été reçu par le marchand
 
 ### 6.5 Vérifier les Webhooks
 1. Aller sur : https://dashboard.stripe.com/webhooks
@@ -227,6 +240,15 @@ Vercel exécutera automatiquement `prisma generate` via le hook `postinstall`
 ---
 
 ## Commandes Utiles
+
+### Tester l'envoi d'email de notification
+```bash
+# Tester l'envoi d'email avec Brevo (en local)
+npx tsx scripts/test-email-notification.ts
+
+# Ou avec la variable d'environnement explicite
+BREVO_API_KEY="votre_clé_api" npx tsx scripts/test-email-notification.ts
+```
 
 ### Redéployer depuis local
 ```bash
