@@ -77,9 +77,9 @@ export default function Home() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 className="font-semibold text-gray-900">
+                                    <h3 className="font-semibold text-gray-900">
                                         Design professionnel
-                                    </h4>
+                                    </h3>
                                     <p className="text-gray-600 text-sm">
                                         Interface claire et moderne qui rassure
                                         vos clients
@@ -104,9 +104,9 @@ export default function Home() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 className="font-semibold text-gray-900">
+                                    <h3 className="font-semibold text-gray-900">
                                         Informations claires
-                                    </h4>
+                                    </h3>
                                     <p className="text-gray-600 text-sm">
                                         Titre, description, montant et
                                         bénéficiaire bien visibles
@@ -131,9 +131,9 @@ export default function Home() {
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 className="font-semibold text-gray-900">
+                                    <h3 className="font-semibold text-gray-900">
                                         Paiement sécurisé
-                                    </h4>
+                                    </h3>
                                     <p className="text-gray-600 text-sm">
                                         Badge Stripe visible pour inspirer
                                         confiance
@@ -196,9 +196,9 @@ export default function Home() {
                             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
                                 <div className="bg-white rounded-xl shadow-lg p-6">
                                     <div className="mb-4">
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-1">
+                                        <p className="text-2xl font-bold text-gray-900 mb-1">
                                             Consultation Marketing
-                                        </h3>
+                                        </p>
                                         <p className="text-gray-600 text-sm">
                                             Session de 1h pour optimiser votre
                                             stratégie digitale
@@ -267,6 +267,7 @@ export default function Home() {
                 </div>
 
                 {/* Features */}
+                <h2 className="sr-only">Fonctionnalités</h2>
                 <div
                     id="features"
                     className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20"
