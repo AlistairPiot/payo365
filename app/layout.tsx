@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
     title: "Payo365 - Liens de paiement en ligne pour freelances et créateurs",
     description:
-        "Créez des liens de paiement en 30 secondes. Solution simple et sécurisée pour freelances et créateurs. Commission de 6% tout inclus, sans abonnement. Paiements via Stripe.",
-    keywords: "lien de paiement, paiement en ligne, freelance, stripe, commission 6%, facturation",
+        "Créez des liens de paiement en 30 secondes. Solution simple et sécurisée pour freelances et créateurs. Commission de 8% tout inclus, sans abonnement. Paiements via Stripe.",
+    keywords: "lien de paiement, paiement en ligne, freelance, stripe, commission 8%, facturation",
     icons: {
         icon: [
             { url: '/icon_payo365.svg', type: 'image/svg+xml' },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     },
     openGraph: {
         title: "Payo365 - Liens de paiement instantanés",
-        description: "Créez des liens de paiement en 30 secondes. Seulement 6% de commission tout inclus.",
+        description: "Créez des liens de paiement en 30 secondes. Seulement 8% de commission tout inclus.",
         type: "website",
     },
 };

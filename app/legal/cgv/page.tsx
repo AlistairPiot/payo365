@@ -58,12 +58,12 @@ export default function CGVPage() {
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2 mb-4">
                 <li>Aucun abonnement mensuel</li>
-                <li>Commission unique de 6% sur chaque transaction réussie (tout inclus)</li>
-                <li>Les frais de traitement (Stripe, etc.) sont inclus dans la commission de 6%</li>
+                <li>Commission unique de 8% sur chaque transaction réussie (tout inclus)</li>
+                <li>Les frais de traitement (Stripe, etc.) sont inclus dans la commission de 8%</li>
                 <li>Aucun frais caché ou supplémentaire</li>
               </ul>
               <p className="text-gray-700 mb-4">
-                La commission de 6% est automatiquement prélevée lors de chaque paiement effectué via un lien Payo365.
+                La commission de 8% est automatiquement prélevée lors de chaque paiement effectué via un lien Payo365.
                 Ce tarif tout inclus couvre l'ensemble des frais de traitement, vous permettant de savoir exactement combien vous recevrez.
               </p>
             </section>

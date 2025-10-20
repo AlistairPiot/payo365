@@ -263,7 +263,7 @@ export default function Home() {
                             Commissions imbattables
                         </h3>
                         <p className="text-gray-600">
-                            Seulement 6% de commission tout inclus. Simple et
+                            Seulement 8% de commission tout inclus. Simple et
                             transparent, sans frais cachés.
                         </p>
                     </div>
