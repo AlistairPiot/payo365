@@ -170,7 +170,7 @@ export function DashboardStats({ stats }: DashboardStatsProps) {
             <div className="bg-white rounded-xl shadow-sm border border-blue-200 p-6">
                 <div className="flex items-center justify-between mb-2">
                     <p className="text-sm font-medium text-gray-600">
-                        Frais Stripe (1,5% + 0,25€)
+                        Frais Stripe
                     </p>
                     <svg
                         className="w-5 h-5 text-blue-500"
