@@ -117,30 +117,30 @@ export async function sendPaymentNotification(
 
           <div style="margin-top: 30px; margin-bottom: 30px; padding: 20px; background: white; border-radius: 8px; border: 2px solid #10b981;">
             <div class="detail-row" style="border-bottom: none; padding: 8px 0;">
-              <span class="detail-label" style="font-size: 16px;">Montant payé :</span>
+              <span class="detail-label" style="font-size: 16px;">Montant payé : </span>
               <span class="detail-value" style="font-size: 16px;">${amountInEuros} €</span>
             </div>
             <div class="detail-row" style="border-bottom: none; padding: 8px 0;">
-              <span class="detail-label" style="font-size: 16px; color: #dc2626;">Commission Payo365 (${platformFeePercent}%) :</span>
-              <span class="detail-value" style="font-size: 16px; color: #dc2626;">-${platformFeeAmount} €</span>
+              <span class="detail-label" style="font-size: 16px; color: #667eea;">Commission Payo365 (${platformFeePercent}%) : </span>
+              <span class="detail-value" style="font-size: 16px; color: #667eea;">-${platformFeeAmount} €</span>
             </div>
             <div class="detail-row" style="border-bottom: none; padding: 12px 0; border-top: 2px solid #e5e7eb; margin-top: 8px;">
-              <span class="detail-label" style="font-size: 20px; font-weight: 700; color: #10b981;">Montant net à recevoir :</span>
+              <span class="detail-label" style="font-size: 20px; font-weight: 700; color: #10b981;">Montant net à recevoir : </span>
               <span class="detail-value" style="font-size: 24px; font-weight: 700; color: #10b981;">${netAmount} €</span>
             </div>
           </div>
 
           <div style="margin-top: 30px;">
             <div class="detail-row">
-              <span class="detail-label">Article</span>
+              <span class="detail-label">Article : </span>
               <span class="detail-value">${paymentDetails.title}</span>
             </div>
             <div class="detail-row">
-              <span class="detail-label">Client</span>
+              <span class="detail-label">Client : </span>
               <span class="detail-value">${paymentDetails.customerEmail}</span>
             </div>
             <div class="detail-row" style="border-bottom: none;">
-              <span class="detail-label">ID de transaction</span>
+              <span class="detail-label">ID de transaction : </span>
               <span class="detail-value" style="font-family: monospace; font-size: 12px;">${paymentDetails.paymentLinkId}</span>
             </div>
           </div>
