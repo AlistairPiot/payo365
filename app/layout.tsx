@@ -19,10 +19,8 @@ export const metadata: Metadata = {
     keywords: "lien de paiement, paiement en ligne, freelance, stripe, commission 3%, facturation",
     icons: {
         icon: [
-            { url: '/favicon.svg', type: 'image/svg+xml' },
-            { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+            { url: '/icon_payo365.svg', type: 'image/svg+xml' },
         ],
-        apple: { url: '/apple-icon.png', type: 'image/png', sizes: '180x180' },
     },
     openGraph: {
         title: "Payo365 - Liens de paiement instantanés",

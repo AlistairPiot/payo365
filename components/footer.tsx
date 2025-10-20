@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
     const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -14,8 +15,15 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                     {/* Logo et description */}
                     <div className="col-span-1 md:col-span-2">
-                        <Link href="/" className="inline-block" onClick={scrollToTop}>
-                            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg hover:shadow-lg transition-shadow cursor-pointer mb-4">
+                        <Link href="/" className="flex items-center gap-2 w-fit mb-4" onClick={scrollToTop}>
+                            <Image
+                                src="/icon_payo365.svg"
+                                alt="Payo365 Logo"
+                                width={32}
+                                height={32}
+                                className="w-8 h-8"
+                            />
+                            <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xl px-4 py-2 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
                                 Payo365
                             </div>
                         </Link>
