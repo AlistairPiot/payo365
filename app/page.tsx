@@ -42,19 +42,65 @@ export default function Home() {
                 </div>
 
                 {/* Payment Link Preview */}
-                <div className="mt-20 mb-20">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                <div className="mt-20 mb-20 grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Left: Text content */}
+                    <div className="order-2 lg:order-1">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-6">
                             Voici à quoi ressemble votre lien de paiement
                         </h2>
-                        <p className="text-lg text-gray-600">
-                            Simple, élégant et professionnel
+                        <p className="text-lg text-gray-600 mb-6">
+                            Simple, élégant et professionnel. Vos clients verront une page de paiement moderne et sécurisée qui inspire confiance.
                         </p>
+
+                        <div className="space-y-4 mb-8">
+                            <div className="flex items-start gap-3">
+                                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold text-gray-900">Design professionnel</h4>
+                                    <p className="text-gray-600 text-sm">Interface claire et moderne qui rassure vos clients</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold text-gray-900">Informations claires</h4>
+                                    <p className="text-gray-600 text-sm">Titre, description, montant et bénéficiaire bien visibles</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                                <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold text-gray-900">Paiement sécurisé</h4>
+                                    <p className="text-gray-600 text-sm">Badge Stripe visible pour inspirer confiance</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-3 rounded-lg text-sm font-medium">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Créez le vôtre en moins de 30 secondes
+                        </div>
                     </div>
 
-                    <div className="max-w-2xl mx-auto">
-                        {/* Browser mockup */}
-                        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+                    {/* Right: Browser mockup */}
+                    <div className="order-1 lg:order-2">
+                        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transform hover:scale-105 transition-all duration-300">
                             {/* Browser bar */}
                             <div className="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
                                 <div className="flex gap-2">
@@ -63,8 +109,8 @@ export default function Home() {
                                     <div className="w-3 h-3 rounded-full bg-green-400"></div>
                                 </div>
                                 <div className="flex-1 mx-4">
-                                    <div className="bg-white rounded-md px-3 py-1 text-sm text-gray-500 flex items-center gap-2">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div className="bg-white rounded-md px-3 py-1.5 text-xs text-gray-500 flex items-center gap-2">
+                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                         </svg>
                                         <span className="truncate">payo365.com/pay/abc123</span>
@@ -73,50 +119,40 @@ export default function Home() {
                             </div>
 
                             {/* Payment page content */}
-                            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-                                <div className="max-w-md mx-auto bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300">
-                                    <div className="mb-6">
-                                        <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+                                <div className="bg-white rounded-xl shadow-lg p-6">
+                                    <div className="mb-4">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-1">
                                             Consultation Marketing
                                         </h3>
-                                        <p className="text-gray-600">
+                                        <p className="text-gray-600 text-sm">
                                             Session de 1h pour optimiser votre stratégie digitale
                                         </p>
                                     </div>
 
-                                    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-6 text-white mb-6">
-                                        <p className="text-sm opacity-90 mb-1">Montant à payer</p>
-                                        <p className="text-4xl font-bold">
+                                    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg p-4 text-white mb-4">
+                                        <p className="text-xs opacity-90 mb-0.5">Montant à payer</p>
+                                        <p className="text-3xl font-bold">
                                             150.00 EUR
                                         </p>
                                     </div>
 
-                                    <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                                        <p className="text-sm text-gray-500 mb-1">Bénéficiaire</p>
-                                        <p className="font-medium text-gray-900">Votre Nom</p>
+                                    <div className="bg-gray-50 rounded-lg p-3 mb-4">
+                                        <p className="text-xs text-gray-500 mb-0.5">Bénéficiaire</p>
+                                        <p className="font-medium text-gray-900 text-sm">Votre Nom</p>
                                     </div>
 
-                                    <button className="block w-full bg-indigo-600 text-white text-center px-6 py-4 rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300 shadow-lg">
+                                    <button className="block w-full bg-indigo-600 text-white text-center px-4 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300 shadow-md text-sm">
                                         Payer maintenant
                                     </button>
 
-                                    <p className="text-xs text-gray-500 text-center mt-4 flex items-center justify-center gap-1">
+                                    <p className="text-xs text-gray-500 text-center mt-3 flex items-center justify-center gap-1">
                                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                         </svg>
                                         Paiement sécurisé par Stripe
                                     </p>
                                 </div>
-                            </div>
-                        </div>
-
-                        {/* Info badge */}
-                        <div className="mt-6 text-center">
-                            <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                                Créez le vôtre en moins de 30 secondes
                             </div>
                         </div>
                     </div>
